@@ -37,7 +37,6 @@ class Shape():
         self.start_xform = None
         self.end_xform = None
         self.material = None
-        self.translation = None
 
     def _prefix(self):
         """String to prepend the pbrt output with.
@@ -47,9 +46,17 @@ class Shape():
         """
         s = "AttributeBegin\n"
         if self.material is not None:
-            s += '\tNamedMaterial "{}"\n'.format(self.material.id)
-        if self.translation is not None:
-            s += f'\tTranslate {self.translation[0]} {self.translation[1]} {self.translation[2]}\n'
+            s += 'NamedMaterial "{}"\n'.format(self.material.id)
+        if self.xform is not None:
+            s += self.xform.pbrt()
+        if self.start_xform is not None:
+            s += "ActiveTransform StartTime\n"
+            s += self.start_xform.pbrt()
+            s += "ActiveTransform All\n"
+        if self.end_xform is not None:
+            s += "ActiveTransform EndTime\n"
+            s += self.end_xform.pbrt()
+            s += "ActiveTransform All\n"
         return s
 
     def _suffix(self):
@@ -68,12 +75,6 @@ class Shape():
             mat(sbmc.scene_generator.Material): material to attach.
         """
         self.material = mat
-
-    def apply_translation(self, vec):
-        """
-
-        """
-        self.translation = list(vec)
 
     def pbrt(self):
         """Outputs PBRTv2 string representation.

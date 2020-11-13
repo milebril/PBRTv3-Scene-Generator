@@ -1,0 +1,8 @@
+./textures/wall_1024_05.tga
+./textures/wall_1024_ivy_05.tga
+./textures/wall_1024_tex1_05.tga
+./textures/wall_512_1_05.tga
+./textures/wall_512_2_05.tga
+./textures/wall_512_3_05.tga
+./textures/wall_512_4_05.tga
+./textures/wall_512_5_05.tga

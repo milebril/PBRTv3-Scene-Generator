@@ -22,6 +22,7 @@ import copy
 import uuid
 import numpy as np
 import materials
+import textures
 # from . import (lights, materials, textures)
 
 
@@ -31,14 +32,14 @@ def random_texture(textures_list, gamma=1.0):
         textures_list(list of str): path to the texture images.
         gamma(float): gamma correction factor.
     """
-    texname = np.random.choice(textures_list)
+    texname = np.random.choice(textures_list).replace("\\","/")
     name = str(uuid.uuid4())
-    # tex = textures.Imagemap(name, "spectrum", texname, gamma=gamma,
-    #                         udelta=np.random.uniform(0, 1),
-    #                         vdelta=np.random.uniform(0, 1),
-    #                         uscale=np.random.uniform(0.1, 20),
-    #                         vscale=np.random.uniform(0.1, 20))
-    return None
+    tex = textures.Imagemap(name, "spectrum", texname, gamma=gamma,
+                            udelta=np.random.uniform(0, 1),
+                            vdelta=np.random.uniform(0, 1),
+                            uscale=np.random.uniform(0.1, 20),
+                            vscale=np.random.uniform(0.1, 20))
+    return tex
 
 
 # def random_envmap(maps, nsamples=8):

@@ -36,13 +36,13 @@ class Camera():
 		s = 'LookAt {} {} {}  {} {} {}  {} {} {}\n'.format(
 			*(self.position + self.target + self.up))
 
-		s += ('Camera "{}" "float fov" [{}]\n').format(self.type, self.fov)
+		# s += ('Camera "{}" "float fov" [{}]\n').format(self.type, self.fov)
 
-		# s += ('Camera "{}" "float fov" [{}] "float shutteropen" [{}] '
-		# 		'"float shutterclose" [{}] "float lensradius" [{}]'
-		# 		' "float focaldistance" [{}]\n').format(self.type, self.fov,
-		# 												self.shutteropen,
-		# 												self.shutterclose,
-		# 												self.lensradius,
-		# 												self.focaldistance)
+		s += ('Camera "{}" "float fov" [{}] "float shutteropen" [{}] '
+				'"float shutterclose" [{}] "float lensradius" [{}]'
+				' "float focaldistance" [{}]\n').format(self.type, self.fov,
+														self.shutteropen,
+														self.shutterclose,
+														self.lensradius,
+														self.focaldistance)
 		return s
