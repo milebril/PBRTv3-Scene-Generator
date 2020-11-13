@@ -1,0 +1,29 @@
+LookAt 0 3 3  0 0 -2  0 1 0
+Camera "perspective" "float fov" [60]
+Film "image" "integer xresolution" [512] "integer yresolution" [512] "string filename" "G:/Documents/School/Thesis/code/PBRTv3-Scene-Generator/scripts/output/scenes/1kpVZww7_S8.exr"
+
+Sampler "sobol" "integer pixelsamples" 16 
+Integrator "path" "integer maxdepth" 10 
+
+WorldBegin 
+LightSource "infinite" "rgb L" [.4 .45 .5] 
+LightSource "distant"  "point from" [ -30 40  100 ] "blackbody L" [3000 1.5]
+MakeNamedMaterial "diff" "string type" "uber" "rgb Kd" [0.1 0.3 0.9] "rgb Ks" [0.25 0.25 0.25] "rgb Kr" [0 0 0] "float roughness" [0.1] "float index" [1.5] "rgb opacity" [1.0 1.0 1.0] 
+
+Texture "check" "spectrum"  "checkerboard" "rgb tex1" [0.1 0.1 0.1] "rgb tex2" [0.8 0.8 0.8]
+"float uscale" [8] "float vscale" [8] "float udelta" [1.0] "float vdelta" [1.0]MakeNamedMaterial "checkers" "string type" "matte" "texture Kd" "check"
+ 
+AttributeBegin
+	NamedMaterial "diff"
+	Translate 0 0 -1
+	Shape "sphere" "float radius" [0.5]
+AttributeEnd
+
+AttributeBegin
+	NamedMaterial "checkers"
+	Translate 0 -1 -2
+Shape "trianglemesh" "integer indices" [0 1 2 2 3 0]
+"point P" [-7.5 0.0 -7.5 -7.5 0.0 7.5 7.5 0.0 7.5 7.5 0.0 -7.5]
+AttributeEnd
+
+WorldEnd 
